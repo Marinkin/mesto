@@ -1,0 +1,22 @@
+.profile__info{
+    display: grid;
+    grid-template-columns: minmax(min-content, max-content) min-content;
+    gap: 16px 17px;
+    margin: 0;
+    align-content: center;
+
+}
+
+@media screen and (max-width: 780px){
+    .profile__info{
+        gap:5px;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .profile__info{
+        padding-top: 11px;
+        justify-items: center;
+        gap: 0;
+    }
+}

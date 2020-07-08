@@ -1,0 +1,13 @@
+.element__container{
+    width: 282px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin: 0;
+}
+@media screen and (max-width: 1024px){
+    .element__container {
+        width: 100%;
+    }
+}

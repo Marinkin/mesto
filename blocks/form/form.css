@@ -1,0 +1,8 @@
+@import url(./__title/form__title.css);
+@import url(./__input/form__input.css);
+@import url(./__liner/form__liner.css);
+
+.form{
+    display: flex;
+    flex-direction: column;
+}
