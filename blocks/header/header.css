@@ -1,22 +1,26 @@
 @import url(./__logo/header__logo.css);
-@import url(./__line/header__line.css);
 
 .header {
-    padding: 45px 199px 41px;
+    border-bottom: 1px solid #545454;
+    margin: 45px 16%;
+    padding-bottom: 40px;
+    max-width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 
 }
 
-
-@media screen and (max-width: 1024px){
-    .header{
-        padding: 45px 99px 41px;
-        margin: 0;
+@media screen and (max-width: 1024px) {
+    .header {
+        margin: 40px 8% 47px;
     }
 }
 
-    @media screen and (max-width: 530px){
-    .header{
-        padding: 28px 0;
+@media screen and (max-width: 560px) {
+    .header {
+        margin: 24px 0 0;
+        padding-bottom: 32px;
     }
 }
 

@@ -1,13 +1,14 @@
-.form__input{
+.form__input {
     color: black;
     font-weight: normal;
     font-size: 14px;
     line-height: 17px;
     box-sizing: border-box;
-    border: aliceblue;
+    border: none;
+    border-bottom: 1px solid #545454;
+    margin-bottom: 30px;
 }
 
 .form__input:focus {
-    outline: 0;
     outline-offset: 0;
 }

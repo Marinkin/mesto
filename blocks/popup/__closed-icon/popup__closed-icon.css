@@ -1,5 +1,5 @@
 .popup__closed-icon {
-    background-image: url("../../../images/Vector-plus.svg");
+    background-image: url("../../../images/add-button.svg");
     background-color: transparent;
     width: 40px;
     height: 40px;
@@ -11,9 +11,9 @@
     border: none;
 }
 
-.popup__closed-icon:hover{
-    background-image: url("../../../images/Vector-plus-hover.svg");
+.popup__closed-icon:hover {
     cursor: pointer;
+    opacity: 0.7;
 }
 
 .popup__closed-icon:focus {

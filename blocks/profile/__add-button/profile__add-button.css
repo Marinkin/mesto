@@ -2,29 +2,39 @@
     background-color: transparent;
     width: 150px;
     height: 50px;
-    background-image: url("../../../images/Vector-plus.svg");
+    background-image: url("../../../images/add-button.svg");
     background-repeat: no-repeat;
     border: 2px solid #FFFFFF;
     background-position: center;
+    box-sizing: border-box;
+    border-radius: 2px;
+    transition: 1s linear;
 
 }
 
 .profile__add-button:hover {
-    border: 2px solid rgba(255, 255, 255, 0.6);
     cursor: pointer;
-    background-image: url("../../../images/Vector-plus-hover.svg");
+    opacity: 0.6;
 }
 
-@media screen and (max-width: 780px){
-    .profile__add-button{
+@media screen and (max-width: 780px) {
+    .profile__add-button {
         margin: 0 auto;
     }
 }
 
-@media screen and (max-width: 480px){
-    .profile__add-button{
-            width: 100%;
+@media screen and (max-width: 560px) {
+    .profile__add-button {
+        width: 70%;
         margin-top: 36px;
-        }
+    }
 
 }
+
+@media screen and (max-width: 480px) {
+    .profile__add-button {
+        width: 100%;
+    }
+
+}
+

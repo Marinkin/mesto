@@ -4,36 +4,35 @@
 @import url(./__like/element__like.css);
 @import url(./__image/element__image.css);
 
-.elements{
-    margin: 0 199px;
-    padding-top: 51px;
+.element {
+    padding: 0 16%;
     object-fit: cover;
     display: grid;
-    grid-template-columns: repeat(3, minmax(auto, 282px));
+    grid-template-columns: repeat(3, minmax(auto, 32%));
     grid-gap: 20px 18px;
     max-width: 1200px;
     justify-content: center;
 }
 
-@media screen and (max-width: 1024px){
-    .elements {
-        margin: 0 80px;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+@media screen and (max-width: 1024px) {
+    .element {
+        padding: 0 7%;
     }
 }
 
-@media screen and (max-width: 780px){
-    .elements {
-        margin: 0 99px;
+@media screen and (max-width: 780px) {
+    .element {
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 16px;
     }
 }
 
-@media screen and (max-width: 480px){
-    .elements {
+@media screen and (max-width: 560px) {
+    .element {
         grid-template-columns: minmax(282px, 1fr);
         grid-gap: 20px;
+        padding: 0 19px;
+
     }
 }
 
