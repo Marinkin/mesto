@@ -15,8 +15,12 @@
 
 @media screen and (max-width: 560px) {
     .profile__info {
-        padding-top: 11px;
-        justify-items: center;
-        gap: 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        white-space: nowrap;
+        justify-content: center;
+        max-width: 250px;
+        margin: 0;
     }
 }

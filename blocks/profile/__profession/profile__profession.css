@@ -15,3 +15,12 @@
         line-height: 17px;
     }
 }
+
+
+@media screen and (max-width: 560px) {
+    .profile__profession {
+        grid-column-start: 1;
+        grid-column-end: 4;
+        margin: 0;
+    }
+}
