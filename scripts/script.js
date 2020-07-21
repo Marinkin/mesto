@@ -26,12 +26,9 @@ const windowModalImage = windowModal.querySelector('.popup__image');
 
 
 function toggleModal(modal) {
-    if (!modal.classList.contains('popup')) {
-        inputName.value = profileName.textContent;
-        inputJob.value = profileProfession.textContent;
-    }
     modal.classList.toggle('popup_opened');
 }
+
 function formSubmitHandler(evt) {
     evt.preventDefault();
     profileName.textContent = inputName.value;
@@ -45,15 +42,20 @@ function placeFormSubmitHandler(evt) {
     toggleModal(placeModal);
 }
 
+function toggleProfileModal()
+{
+    if (!profileModal.classList.contains('popup_opened')) {
+        inputName.value = profileName.textContent;
+        inputJob.value = profileProfession.textContent;
+    }
+    toggleModal(profileModal);
+}
+
 form.addEventListener('submit', formSubmitHandler);
 placeForm.addEventListener('submit', placeFormSubmitHandler);
 
 openProfileEditButton.addEventListener('click', () => {
-    toggleModal(profileModal);
-    if (profileModal.classList.contains('popup_opened')) {
-        inputName.value = profileName.textContent;
-        inputJob.value = profileProfession.textContent;
-    }
+    toggleProfileModal();
 });
 
 closeProfileModalButton.addEventListener('click',() => {
@@ -118,11 +120,9 @@ function handleImageClick(elementImage){
 
 }
 
-
 function createCard(data){
     const element = figureTemplate.cloneNode(true);
     const elementImage = element.querySelector('.element__image');
-    const elementSrc = element.querySelector('.element__image');
     const elementTitle = element.querySelector('.element__title');
     const elementLikeButton = element.querySelector('.element__like');
     const elementTrash = element.querySelector('.element__trash');
@@ -140,7 +140,7 @@ function createCard(data){
 
     elementTitle.textContent = data.name;
     elementImage.src = data.link;
-    elementSrc.textContent = data.name;
+    elementImage.alt = data.name;
 
     return element;
 
