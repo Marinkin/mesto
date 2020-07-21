@@ -15,7 +15,6 @@ const windowCloseModalButton = windowModal.querySelector('.popup__closed-icon');
 const profileName = document.querySelector('.profile__name');
 const profileProfession = document.querySelector('.profile__profession');
 
-
 const inputName = form.querySelector('.form__input_type_name');
 const inputJob = form.querySelector('.form__input_type_job');
 const placeName = placeForm.querySelector('.form__input_type_name_mesto');
@@ -42,8 +41,7 @@ function placeFormSubmitHandler(evt) {
     toggleModal(placeModal);
 }
 
-function toggleProfileModal()
-{
+function toggleProfileModal() {
     if (!profileModal.classList.contains('popup_opened')) {
         inputName.value = profileName.textContent;
         inputJob.value = profileProfession.textContent;
@@ -62,7 +60,7 @@ closeProfileModalButton.addEventListener('click',() => {
     toggleModal(profileModal)
 });
 
-openProfileAddButton.addEventListener('click', () =>{
+openProfileAddButton.addEventListener('click', () => {
     toggleModal(placeModal)
 });
 closePlaceModalButton.addEventListener('click',() => {
@@ -111,7 +109,7 @@ function handleTrashClick(elementTrash) {
     elementTrash.closest('.element__container').remove();
 }
 
-function handleImageClick(elementImage){
+function handleImageClick(elementImage) {
 
     windowModalImage.src = elementImage.src;
     windowModalTitle.textContent = elementImage.closest('figure').querySelector('.element__title').textContent;
@@ -120,7 +118,7 @@ function handleImageClick(elementImage){
 
 }
 
-function createCard(data){
+function createCard(data) {
     const element = figureTemplate.cloneNode(true);
     const elementImage = element.querySelector('.element__image');
     const elementTitle = element.querySelector('.element__title');
@@ -131,10 +129,10 @@ function createCard(data){
         handleLikeClick(elementLikeButton)
     });
 
-    elementTrash.addEventListener('click', () =>{
+    elementTrash.addEventListener('click', () => {
         handleTrashClick(elementTrash)
     });
-    elementImage.addEventListener('click', () =>{
+    elementImage.addEventListener('click', () => {
         handleImageClick(elementImage)
     });
 
