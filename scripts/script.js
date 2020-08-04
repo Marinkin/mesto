@@ -26,6 +26,43 @@ const windowModalImage = windowModal.querySelector('.popup__image');
 
 function toggleModal(modal) {
     modal.classList.toggle('popup_opened');
+    loadEventListeners(modal);
+}
+
+function loadEventListeners(modal) {
+    let popupOverlay = modal.closest('.popup');
+
+    if (isModalOpened(modal)) {
+        popupOverlay.addEventListener('click', function(evt) {
+            overlayClickHandler(evt, modal, popupOverlay);
+        });
+        document.addEventListener('keydown', function(evt) {
+            escapePopupHandler(evt, modal);
+        })
+    } else {
+        popupOverlay.removeEventListener('click', overlayClickHandler);
+        document.removeEventListener('keydown', escapePopupHandler);
+    }
+}
+
+function overlayClickHandler(evt, modal, popupOverlay) {
+    if (isModalOpened(modal)) {
+        if (evt.target === popupOverlay) {
+            toggleModal(modal);
+        }
+    }
+}
+
+function escapePopupHandler(evt, modal) {
+    if (isModalOpened(modal)) {
+        if (evt.key === 'Escape') {
+            toggleModal(modal);
+        }
+    }
+}
+
+function isModalOpened(modal) {
+    return modal.classList.contains('popup_opened');
 }
 
 function formSubmitHandler(evt) {
@@ -49,6 +86,7 @@ function toggleProfileModal() {
     toggleModal(profileModal);
 }
 
+
 form.addEventListener('submit', formSubmitHandler);
 placeForm.addEventListener('submit', placeFormSubmitHandler);
 
@@ -70,6 +108,7 @@ closePlaceModalButton.addEventListener('click',() => {
 windowCloseModalButton.addEventListener('click',() => {
     toggleModal(windowModal)
 });
+
 
 const initialCards = [
     {

@@ -31,22 +31,26 @@
 <div class="popup popup_profile">
     <div class="popup__container">
         <button type="button" class="popup__closed-icon"></button>
-        <form action="#" class="form form_profile">
+        <form action="#" class="form form_profile" novalidate>
             <h2 class="form__title">Редактировать профиль</h2>
-            <input name="name" type="text" value="Жак-Ив Кусто" class="form__input form__input_type_name">
-            <input name="profession" type="text" value="Исследователь океана" class="form__input form__input_type_job">
-            <button type="submit" class="form__submit-button">Сохранить</button>
+            <input name="name" type="text" value="Жак-Ив Кусто" class="form__input form__input_type_name" required minlength="2" maxlength="40" autocomplete="off">
+            <span class="form__error form__error_visible" id="name-error"></span>
+            <input name="profession" type="text" value="Исследователь океана" class="form__input form__input_type_job" required minlength="2" maxlength="200" autocomplete="off">
+            <span class="form__error form__error_visible" id="profession-error"></span>
+            <button type="submit" class="form__submit-button form__submit-button_disabled" disabled>Сохранить</button>
         </form>
     </div>
 </div>
 <div class="popup popup_place">
         <div class="popup__container">
         <button type="button" class="popup__closed-icon"></button>
-        <form action="#" class="form form_place">
+        <form action="#" class="form form_place" novalidate>
             <h2 class="form__title">Новое место</h2>
-            <input name="name-mesto" type="text" placeholder="Название" class="form__input form__input_type_name_mesto">
-            <input name="link" type="text" placeholder="Ссылка на картинку" class="form__input form__input_type_link">
-            <button type="submit" class="form__submit-button" id="createButton">Создать</button>
+            <input name="name-mesto" type="text" placeholder="Название" class="form__input form__input_type_name_mesto" required minlength="1" maxlength="30" autocomplete="off">
+            <span class="form__error form__error_visible" id="name-mesto-error"></span>
+            <input name="link" type="url" placeholder="Ссылка на картинку" class="form__input form__input_type_link" required autocomplete="off">
+            <span class="form__error form__error_visible" id="link-error"></span>
+            <button type="submit" class="form__submit-button form__submit-button_disabled" id="createButton" disabled>Создать</button>
         </form>
         </div>
 </div>
@@ -68,6 +72,8 @@
         </div>
     </figure>
 </template>
+
 <script src="scripts/script.js"></script>
+<script src="scripts/validation.js"></script>
 </body>
 </html>

@@ -10,10 +10,8 @@
     padding: 10px;
     transition: 1s linear;
     border: none;
-
 }
 
 .form__submit-button:hover {
-    background-color: rgba(0, 0, 0, 0.8);
     cursor: pointer;
 }
