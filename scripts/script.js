@@ -1,47 +1,46 @@
-const profileModal = document.querySelector('.popup_profile');
-const placeModal = document.querySelector('.popup_place');
-const windowModal = document.querySelector('.popup_window');
+const profileModal = document.querySelector(".popup_profile");
+const placeModal = document.querySelector(".popup_place");
+const windowModal = document.querySelector(".popup_window");
 
-const form = profileModal.querySelector('.form');
-const placeForm = placeModal.querySelector('.form');
+const form = profileModal.querySelector(".form");
+const placeForm = placeModal.querySelector(".form");
 
-const openProfileEditButton = document.querySelector('.profile__edit-button');
-const openProfileAddButton = document.querySelector('.profile__add-button');
+const openProfileEditButton = document.querySelector(".profile__edit-button");
+const openProfileAddButton = document.querySelector(".profile__add-button");
 
-const closeProfileModalButton = profileModal.querySelector('.popup__closed-icon');
-const closePlaceModalButton = placeModal.querySelector('.popup__closed-icon');
-const windowCloseModalButton = windowModal.querySelector('.popup__closed-icon');
+const closeProfileModalButton = profileModal.querySelector(
+    ".popup__closed-icon"
+);
+const closePlaceModalButton = placeModal.querySelector(".popup__closed-icon");
+const windowCloseModalButton = windowModal.querySelector(".popup__closed-icon");
 
-const profileName = document.querySelector('.profile__name');
-const profileProfession = document.querySelector('.profile__profession');
+const profileName = document.querySelector(".profile__name");
+const profileProfession = document.querySelector(".profile__profession");
 
-const inputName = form.querySelector('.form__input_type_name');
-const inputJob = form.querySelector('.form__input_type_job');
-const placeName = placeForm.querySelector('.form__input_type_name_mesto');
-const placeLink = placeForm.querySelector('.form__input_type_link');
+const inputName = form.querySelector(".form__input_type_name");
+const inputJob = form.querySelector(".form__input_type_job");
+const placeName = placeForm.querySelector(".form__input_type_name_mesto");
+const placeLink = placeForm.querySelector(".form__input_type_link");
 
-const windowModalTitle = windowModal.querySelector('.popup__title');
-const windowModalImage = windowModal.querySelector('.popup__image');
-
+const windowModalTitle = windowModal.querySelector(".popup__title");
+const windowModalImage = windowModal.querySelector(".popup__image");
 
 function toggleModal(modal) {
-    modal.classList.toggle('popup_opened');
+    modal.classList.toggle("popup_opened");
     loadEventListeners(modal);
 }
 
 function loadEventListeners(modal) {
-    let popupOverlay = modal.closest('.popup');
+    let popupOverlay = modal.closest(".popup");
 
     if (isModalOpened(modal)) {
-        popupOverlay.addEventListener('click', function(evt) {
+        popupOverlay.addEventListener("click", function (evt) {
             overlayClickHandler(evt, modal, popupOverlay);
         });
-        document.addEventListener('keydown', function(evt) {
-            escapePopupHandler(evt, modal);
-        })
+        document.addEventListener("keydown", escapePopupHandler);
     } else {
-        popupOverlay.removeEventListener('click', overlayClickHandler);
-        document.removeEventListener('keydown', escapePopupHandler);
+        popupOverlay.removeEventListener("click", overlayClickHandler);
+        document.removeEventListener("keydown", escapePopupHandler);
     }
 }
 
@@ -53,16 +52,17 @@ function overlayClickHandler(evt, modal, popupOverlay) {
     }
 }
 
-function escapePopupHandler(evt, modal) {
+function escapePopupHandler(evt) {
+    let modal = document.querySelector(".popup_opened");
     if (isModalOpened(modal)) {
-        if (evt.key === 'Escape') {
+        if (evt.key === "Escape") {
             toggleModal(modal);
         }
     }
 }
 
 function isModalOpened(modal) {
-    return modal.classList.contains('popup_opened');
+    return modal.classList.contains("popup_opened");
 }
 
 function formSubmitHandler(evt) {
@@ -74,105 +74,110 @@ function formSubmitHandler(evt) {
 
 function placeFormSubmitHandler(evt) {
     evt.preventDefault();
-    renderCard({name: placeName.value, link: placeLink.value});
+    renderCard({ name: placeName.value, link: placeLink.value });
     toggleModal(placeModal);
 }
 
 function toggleProfileModal() {
-    if (!profileModal.classList.contains('popup_opened')) {
+    if (!profileModal.classList.contains("popup_opened")) {
         inputName.value = profileName.textContent;
         inputJob.value = profileProfession.textContent;
     }
     toggleModal(profileModal);
 }
 
+form.addEventListener("submit", formSubmitHandler);
+placeForm.addEventListener("submit", placeFormSubmitHandler);
 
-form.addEventListener('submit', formSubmitHandler);
-placeForm.addEventListener('submit', placeFormSubmitHandler);
-
-openProfileEditButton.addEventListener('click', () => {
+openProfileEditButton.addEventListener("click", () => {
     toggleProfileModal();
 });
 
-closeProfileModalButton.addEventListener('click',() => {
-    toggleModal(profileModal)
+closeProfileModalButton.addEventListener("click", () => {
+    toggleModal(profileModal);
 });
 
-openProfileAddButton.addEventListener('click', () => {
-    toggleModal(placeModal)
+openProfileAddButton.addEventListener("click", () => {
+    toggleModal(placeModal);
 });
-closePlaceModalButton.addEventListener('click',() => {
-    toggleModal(placeModal)
-});
-
-windowCloseModalButton.addEventListener('click',() => {
-    toggleModal(windowModal)
+closePlaceModalButton.addEventListener("click", () => {
+    toggleModal(placeModal);
 });
 
+windowCloseModalButton.addEventListener("click", () => {
+    toggleModal(windowModal);
+});
 
 const initialCards = [
     {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+        name: "Архыз",
+        link:
+            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
     },
     {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+        name: "Челябинская область",
+        link:
+            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
     },
     {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+        name: "Иваново",
+        link:
+            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
     },
     {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+        name: "Камчатка",
+        link:
+            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
     },
     {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+        name: "Холмогорский район",
+        link:
+            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
     },
     {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
+        name: "Байкал",
+        link:
+            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+    },
 ];
 
-const figureTemplate = document.querySelector('#figure').content.querySelector('.element__container');
-const cardElement = document.querySelector('.element');
-
+const figureTemplate = document
+    .querySelector("#figure")
+    .content.querySelector(".element__container");
+const cardElement = document.querySelector(".element");
 
 function handleLikeClick(elementLikeButton) {
-    elementLikeButton.classList.toggle('element__like_active');
+    elementLikeButton.classList.toggle("element__like_active");
 }
 function handleTrashClick(elementTrash) {
-    elementTrash.closest('.element__container').remove();
+    elementTrash.closest(".element__container").remove();
 }
 
 function handleImageClick(elementImage) {
-
     windowModalImage.src = elementImage.src;
-    windowModalTitle.textContent = elementImage.closest('figure').querySelector('.element__title').textContent;
+    windowModalTitle.textContent = elementImage
+        .closest("figure")
+        .querySelector(".element__title").textContent;
 
     toggleModal(windowModal);
-
 }
 
 function createCard(data) {
     const element = figureTemplate.cloneNode(true);
-    const elementImage = element.querySelector('.element__image');
-    const elementTitle = element.querySelector('.element__title');
-    const elementLikeButton = element.querySelector('.element__like');
-    const elementTrash = element.querySelector('.element__trash');
+    const elementImage = element.querySelector(".element__image");
+    const elementTitle = element.querySelector(".element__title");
+    const elementLikeButton = element.querySelector(".element__like");
+    const elementTrash = element.querySelector(".element__trash");
 
-    elementLikeButton.addEventListener('click', () => {
-        handleLikeClick(elementLikeButton)
+    elementLikeButton.addEventListener("click", () => {
+        handleLikeClick(elementLikeButton);
     });
 
-    elementTrash.addEventListener('click', () => {
-        handleTrashClick(elementTrash)
+    elementTrash.addEventListener("click", () => {
+        handleTrashClick(elementTrash);
     });
-    elementImage.addEventListener('click', () => {
-        handleImageClick(elementImage)
+    elementImage.addEventListener("click", () => {
+        handleImageClick(elementImage);
     });
 
     elementTitle.textContent = data.name;
@@ -180,13 +185,11 @@ function createCard(data) {
     elementImage.alt = data.name;
 
     return element;
-
 }
 function renderCard(data) {
     cardElement.prepend(createCard(data));
 }
 
 initialCards.forEach((data) => {
-
-    renderCard(data)
+    renderCard(data);
 });
