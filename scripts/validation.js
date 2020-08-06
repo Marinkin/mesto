@@ -22,7 +22,7 @@ function enableValidation(settings) {
             inputElement.addEventListener("input", function (evt) {
                 checkInputValidity(inputElement, settings);
 
-                let button = formElement.querySelector("button");
+                const button = formElement.querySelector("button");
                 changeButtonState(button, formInputs, settings.inactiveButtonClass);
             });
         });

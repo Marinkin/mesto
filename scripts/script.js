@@ -31,7 +31,7 @@ function toggleModal(modal) {
 }
 
 function loadEventListeners(modal) {
-    let popupOverlay = modal.closest(".popup");
+    const popupOverlay = modal.closest(".popup");
 
     if (isModalOpened(modal)) {
         popupOverlay.addEventListener("click", function (evt) {
@@ -53,7 +53,7 @@ function overlayClickHandler(evt, modal, popupOverlay) {
 }
 
 function escapePopupHandler(evt) {
-    let modal = document.querySelector(".popup_opened");
+    const modal = document.querySelector(".popup_opened");
     if (isModalOpened(modal)) {
         if (evt.key === "Escape") {
             toggleModal(modal);
