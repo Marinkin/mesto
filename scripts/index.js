@@ -1,3 +1,6 @@
+import FormValidator from './FormValidator.js';
+import Card from './Card.js';
+
 const profileModal = document.querySelector(".popup_profile");
 const placeModal = document.querySelector(".popup_place");
 const windowModal = document.querySelector(".popup_window");
@@ -22,8 +25,20 @@ const inputJob = form.querySelector(".form__input_type_job");
 const placeName = placeForm.querySelector(".form__input_type_name_mesto");
 const placeLink = placeForm.querySelector(".form__input_type_link");
 
-const windowModalTitle = windowModal.querySelector(".popup__title");
-const windowModalImage = windowModal.querySelector(".popup__image");
+const formPlace = document.querySelector('.form_place');
+const formProfile = document.querySelector('.form_profile');
+
+const settings = {
+    formSelector: ".form",
+    inputSelector: ".form__input",
+    submitButtonSelector: ".form__submit-button",
+    inactiveButtonClass: "form__submit-button_disabled",
+    inputErrorClass: "form__input_type_error",
+    errorClass: "form__error_visible",
+};
+
+new FormValidator(settings, formPlace).enableValidation();
+new FormValidator(settings, formProfile).enableValidation();
 
 function toggleModal(modal) {
     modal.classList.toggle("popup_opened");
@@ -74,7 +89,7 @@ function formSubmitHandler(evt) {
 
 function placeFormSubmitHandler(evt) {
     evt.preventDefault();
-    renderCard({ name: placeName.value, link: placeLink.value });
+    prependCard(placeName.value, placeLink.value);
     toggleModal(placeModal);
 }
 
@@ -144,52 +159,14 @@ const initialCards = [
 const figureTemplate = document
     .querySelector("#figure")
     .content.querySelector(".element__container");
+
 const cardElement = document.querySelector(".element");
 
-function handleLikeClick(elementLikeButton) {
-    elementLikeButton.classList.toggle("element__like_active");
-}
-function handleTrashClick(elementTrash) {
-    elementTrash.closest(".element__container").remove();
-}
-
-function handleImageClick(elementImage) {
-    windowModalImage.src = elementImage.src;
-    windowModalTitle.textContent = elementImage
-        .closest("figure")
-        .querySelector(".element__title").textContent;
-
-    toggleModal(windowModal);
-}
-
-function createCard(data) {
-    const element = figureTemplate.cloneNode(true);
-    const elementImage = element.querySelector(".element__image");
-    const elementTitle = element.querySelector(".element__title");
-    const elementLikeButton = element.querySelector(".element__like");
-    const elementTrash = element.querySelector(".element__trash");
-
-    elementLikeButton.addEventListener("click", () => {
-        handleLikeClick(elementLikeButton);
-    });
-
-    elementTrash.addEventListener("click", () => {
-        handleTrashClick(elementTrash);
-    });
-    elementImage.addEventListener("click", () => {
-        handleImageClick(elementImage);
-    });
-
-    elementTitle.textContent = data.name;
-    elementImage.src = data.link;
-    elementImage.alt = data.name;
-
-    return element;
-}
-function renderCard(data) {
-    cardElement.prepend(createCard(data));
-}
-
 initialCards.forEach((data) => {
-    renderCard(data);
+    prependCard(data.name, data.link)
 });
+
+function prependCard(name, link) {
+    const card = new Card(name, link, figureTemplate);
+    cardElement.prepend(card.createCardView());
+}
