@@ -1,44 +1,5 @@
-const windowModal = document.querySelector(".popup_window");
-
-function toggleModal(modal) {
-    modal.classList.toggle("popup_opened");
-    loadEventListeners(modal);
-}
-
-function loadEventListeners(modal) {
-    const popupOverlay = modal.closest(".popup");
-
-    if (isModalOpened(modal)) {
-        popupOverlay.addEventListener("click", function (evt) {
-            overlayClickHandler(evt, modal, popupOverlay);
-        });
-        document.addEventListener("keydown", escapePopupHandler);
-    } else {
-        popupOverlay.removeEventListener("click", overlayClickHandler);
-        document.removeEventListener("keydown", escapePopupHandler);
-    }
-}
-
-function overlayClickHandler(evt, modal, popupOverlay) {
-    if (isModalOpened(modal)) {
-        if (evt.target === popupOverlay) {
-            toggleModal(modal);
-        }
-    }
-}
-
-function isModalOpened(modal) {
-    return modal.classList.contains("popup_opened");
-}
-
-function escapePopupHandler(evt) {
-    const modal = document.querySelector(".popup_opened");
-    if (isModalOpened(modal)) {
-        if (evt.key === "Escape") {
-            toggleModal(modal);
-        }
-    }
-}
+import {windowModal} from './index.js';
+import toggleModal from './index.js';
 
 class Card {
     constructor(name, link, template) {
@@ -48,7 +9,7 @@ class Card {
     }
 
      createCardView() {
-        const element = this._template.cloneNode(true);
+        const element = this._template.content.querySelector(".element__container").cloneNode(true);
         const elementImage = element.querySelector(".element__image");
         const elementTitle = element.querySelector(".element__title");
         const elementLikeButton = element.querySelector(".element__like");

@@ -3,7 +3,7 @@ import Card from './Card.js';
 
 const profileModal = document.querySelector(".popup_profile");
 const placeModal = document.querySelector(".popup_place");
-const windowModal = document.querySelector(".popup_window");
+export const windowModal = document.querySelector(".popup_window");
 
 const form = profileModal.querySelector(".form");
 const placeForm = placeModal.querySelector(".form");
@@ -28,6 +28,7 @@ const placeLink = placeForm.querySelector(".form__input_type_link");
 const formPlace = document.querySelector('.form_place');
 const formProfile = document.querySelector('.form_profile');
 
+
 const settings = {
     formSelector: ".form",
     inputSelector: ".form__input",
@@ -40,28 +41,25 @@ const settings = {
 new FormValidator(settings, formPlace).enableValidation();
 new FormValidator(settings, formProfile).enableValidation();
 
-function toggleModal(modal) {
+export default function toggleModal(modal) {
     modal.classList.toggle("popup_opened");
     loadEventListeners(modal);
 }
 
 function loadEventListeners(modal) {
-    const popupOverlay = modal.closest(".popup");
-
     if (isModalOpened(modal)) {
-        popupOverlay.addEventListener("click", function (evt) {
-            overlayClickHandler(evt, modal, popupOverlay);
-        });
+        modal.addEventListener("click", overlayClickHandler);
         document.addEventListener("keydown", escapePopupHandler);
     } else {
-        popupOverlay.removeEventListener("click", overlayClickHandler);
+        modal.removeEventListener("click", overlayClickHandler);
         document.removeEventListener("keydown", escapePopupHandler);
     }
 }
 
-function overlayClickHandler(evt, modal, popupOverlay) {
+function overlayClickHandler(evt) {
+    const modal = this;
     if (isModalOpened(modal)) {
-        if (evt.target === popupOverlay) {
+        if (evt.target === modal) {
             toggleModal(modal);
         }
     }
@@ -157,8 +155,7 @@ const initialCards = [
 ];
 
 const figureTemplate = document
-    .querySelector("#figure")
-    .content.querySelector(".element__container");
+    .querySelector("#figure");
 
 const cardElement = document.querySelector(".element");
 
