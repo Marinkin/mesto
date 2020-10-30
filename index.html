@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="pages/index.css">
+    <link rel="stylesheet" href="src/pages/index.css">
     <title>Место</title>
 </head>
 <body class="page">
 <div class="page__content">
     <header class="header">
-        <img src="images/header-logo.svg" alt="Логотип" class="header__logo">
+        <img src="src/images/header-logo.svg" alt="Логотип" class="header__logo">
     </header>
     <main class="content">
         <section class="profile">
-            <img src="images/avatar-photo.jpg" class="profile__avatar" alt="Фотография пользователя">
+            <img src="src/images/avatar-photo.jpg" class="profile__avatar" alt="Фотография пользователя">
             <div class="profile__info">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
                 <button type="button" class="profile__edit-button"></button>
@@ -33,9 +33,9 @@
         <button type="button" class="popup__closed-icon"></button>
         <form action="#" class="form form_profile" novalidate>
             <h2 class="form__title">Редактировать профиль</h2>
-            <input name="name" type="text" value="Жак-Ив Кусто" class="form__input form__input_type_name" required minlength="2" maxlength="40" autocomplete="off">
-            <span class="form__error form__error_visible" id="name-error"></span>
-            <input name="profession" type="text" value="Исследователь океана" class="form__input form__input_type_job" required minlength="2" maxlength="200" autocomplete="off">
+            <input name="name_profile" type="text" value="Жак-Ив Кусто" class="form__input form__input_type_name" required minlength="2" maxlength="40" autocomplete="off">
+            <span class="form__error form__error_visible" id="name_profile-error"></span>
+            <input name="profession" type="text" value="Исследователь океана" class="form__input form__input_type_job " required minlength="2" maxlength="200" autocomplete="off">
             <span class="form__error form__error_visible" id="profession-error"></span>
             <button type="submit" class="form__submit-button form__submit-button_disabled" disabled>Сохранить</button>
         </form>
@@ -46,8 +46,8 @@
         <button type="button" class="popup__closed-icon"></button>
         <form action="#" class="form form_place" novalidate>
             <h2 class="form__title">Новое место</h2>
-            <input name="name-mesto" type="text" placeholder="Название" class="form__input form__input_type_name_mesto" required minlength="1" maxlength="30" autocomplete="off">
-            <span class="form__error form__error_visible" id="name-mesto-error"></span>
+            <input name="name" type="text" placeholder="Название" class="form__input form__input_type_name_mesto" required minlength="1" maxlength="30" autocomplete="off">
+            <span class="form__error form__error_visible" id="name-error"></span>
             <input name="link" type="url" placeholder="Ссылка на картинку" class="form__input form__input_type_link" required autocomplete="off">
             <span class="form__error form__error_visible" id="link-error"></span>
             <button type="submit" class="form__submit-button form__submit-button_disabled" id="createButton" disabled>Создать</button>
@@ -73,6 +73,6 @@
     </figure>
 </template>
 
-<script src="scripts/index.js" defer type="module"></script>
+<script src="src/pages/index.js" defer type="module"></script>
 </body>
 </html>

@@ -1,9 +1,9 @@
-@import url(./__container/popup__container.css);
-@import url(./__closed-icon/popup__closed-icon.css);
-@import url(./_window/popup_window.css);
-@import url(./__window-container/popup__window-container.css);
-@import url(./__title/popup__title.css);
-@import url(./__image/popup__image.css);
+@import url(__container/popup__container.css);
+@import url(__closed-icon/popup__closed-icon.css);
+@import url(_window/popup_window.css);
+@import url(__window-container/popup__window-container.css);
+@import url(__title/popup__title.css);
+@import url(__image/popup__image.css);
 
 
 .popup {
