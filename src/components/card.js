@@ -40,11 +40,11 @@ export default class Card {
         });
     }
 
-    _handleLikeClick(elementLikeButton) {
-        elementLikeButton.classList.toggle("element__like_active");
+    _handleLikeClick() {
+        this._elementLikeButton.classList.toggle("element__like_active");
     }
 
-    _handleTrashClick(elementTrash) {
-        elementTrash.closest(".element__container").remove();
+    _handleTrashClick() {
+        this._elementTrash.closest(".element__container").remove();
     }
 }

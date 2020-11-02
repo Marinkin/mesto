@@ -17,17 +17,16 @@ class FormValidator {
             inputElement.addEventListener("input", () => {
                 this._checkInputValidity(inputElement);
 
-                const button = this._form.querySelector("button");
+                const button = this._form.querySelector(this._settings.submitButtonSelector);
                 this._changeButtonState(button, formInputs);
             });
         });
     }
 
     _checkInputValidity(inputElement) {
-        const errorElement = inputElement.closest("form").querySelector("#" + inputElement.name + "-error");
-
+        const errorElement = inputElement.closest(this._settings.formSelector).querySelector("#" + inputElement.name + "-error");
         if (this._isValidInput(inputElement)) {
-            this._hideError(inputElement, errorElement);
+            this.hideError(inputElement, errorElement);
         } else {
             this._showError(inputElement, errorElement);
         }
@@ -43,7 +42,7 @@ class FormValidator {
         }
     }
 
-    _hideError(inputElement, errorElement) {
+    hideError(inputElement, errorElement) {
         inputElement.classList.remove(this._settings.inputErrorClass);
         errorElement.textContent = "";
         errorElement.classList.remove(this._settings.errorClass);

@@ -22,7 +22,8 @@ import {
 } from "../utils/constants.js";
 
 new FormValidator(settings, formPlace).enableValidation();
-new FormValidator(settings, formProfile).enableValidation();
+const profileFormValidator =  new FormValidator(settings, formProfile);
+profileFormValidator.enableValidation();
 
 const userInfo = new UserInfo({
     nameSelector: profileName,
@@ -32,6 +33,7 @@ const popupWithForm = new PopupWithForm({
     popupSelector: profileModalSelector,
     handleFormSubmit: (items) => {
         userInfo.setUserInfo(items);
+        userInfo.renderUserInfo();
         popupWithForm.close();
     },
 });
@@ -42,36 +44,57 @@ openProfileEditButton.addEventListener("click", () => {
     inputJob.value = userData.info;
     inputName.value = userData.name;
     popupWithForm.open();
+    preparePopup(profileModalSelector, false);
 });
+
+const placePopup = new PopupWithForm({
+    popupSelector: placeModalSelector,
+    handleFormSubmit: (item) => {
+        const cardList = new Section(
+            {
+                items: [item],
+                renderer: (item) => {
+                    const card = new Card(item, "#figure", () => {
+                        const imagePopup = new PopupWithImage(".popup_window");
+                        imagePopup.setEventListener();
+                        imagePopup.open({ link: item.link, name: item.name });
+                    });
+                    const cardElement = card.createCardView();
+                    cardList.addItem(cardElement);
+                },
+            },
+            cardElementSelector
+        );
+
+        cardList.generateElements();
+        placePopup.close();
+    },
+});
+placePopup.setEventListeners();
 
 openProfileAddButton.addEventListener("click", () => {
-    const popupWithForm = new PopupWithForm({
-        popupSelector: placeModalSelector,
-        handleFormSubmit: (item) => {
-            const cardList = new Section(
-                {
-                    items: [item],
-                    renderer: (item) => {
-                        const card = new Card(item, "#figure", () => {
-                            const imagePopup = new PopupWithImage(".popup_window");
-                            imagePopup.setEventListener();
-                            imagePopup.open({ link: item.link, name: item.name });
-                        });
-                        const cardElement = card.createCardView();
-                        cardList.addItem(cardElement);
-                    },
-                },
-                cardElementSelector
-            );
+    placePopup.open();
+    preparePopup(placeModalSelector, true);
+});
 
-            cardList.generateElements();
-            popupWithForm.close();
-        },
+function preparePopup(modalSelector, buttonDisabled) {
+    const form = document.querySelector(modalSelector).querySelector(settings.formSelector);
+    const formFields = Array.from(form.querySelectorAll(settings.inputSelector));
+
+    formFields.forEach((formField) => {
+        const errorElement = formField.closest(modalSelector).querySelector("#" + formField.name + "-error");
+        profileFormValidator.hideError(formField, errorElement);
     });
 
-    popupWithForm.setEventListeners();
-    popupWithForm.open();
-});
+    const button = form.querySelector(settings.submitButtonSelector);
+
+    if (buttonDisabled) {
+        button.classList.add(settings.inactiveButtonClass);
+    } else {
+        button.classList.remove(settings.inactiveButtonClass);
+    }
+    button.disabled = buttonDisabled;
+}
 
 const cardList = new Section(
     {
