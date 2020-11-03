@@ -47,29 +47,35 @@ openProfileEditButton.addEventListener("click", () => {
     preparePopup(profileModalSelector, false);
 });
 
+const imagePopup = new PopupWithImage(".popup_window");
+imagePopup.setEventListener();
+
+const cardList = new Section(
+    {
+        items: initialCards,
+        renderer: (item) => {
+            renderCard(item);
+        },
+    },
+    cardElementSelector
+);
+
 const placePopup = new PopupWithForm({
     popupSelector: placeModalSelector,
     handleFormSubmit: (item) => {
-        const cardList = new Section(
-            {
-                items: [item],
-                renderer: (item) => {
-                    const card = new Card(item, "#figure", () => {
-                        const imagePopup = new PopupWithImage(".popup_window");
-                        imagePopup.setEventListener();
-                        imagePopup.open({ link: item.link, name: item.name });
-                    });
-                    const cardElement = card.createCardView();
-                    cardList.addItem(cardElement);
-                },
-            },
-            cardElementSelector
-        );
-
-        cardList.generateElements();
+        renderCard(item);
         placePopup.close();
     },
 });
+
+function renderCard(item) {
+    const card = new Card(item, "#figure", () => {
+        imagePopup.open({ link: item.link, name: item.name });
+    });
+    const cardElement = card.createCardView();
+    cardList.addItem(cardElement);
+}
+
 placePopup.setEventListeners();
 
 openProfileAddButton.addEventListener("click", () => {
@@ -95,21 +101,5 @@ function preparePopup(modalSelector, buttonDisabled) {
     }
     button.disabled = buttonDisabled;
 }
-
-const cardList = new Section(
-    {
-        items: initialCards,
-        renderer: (item) => {
-            const card = new Card(item, "#figure", () => {
-                const imagePopup = new PopupWithImage(".popup_window");
-                imagePopup.setEventListener();
-                imagePopup.open({ link: item.link, name: item.name });
-            });
-            const cardElement = card.createCardView();
-            cardList.addItem(cardElement);
-        },
-    },
-    cardElementSelector
-);
 
 cardList.generateElements();
